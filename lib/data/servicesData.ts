@@ -12,6 +12,22 @@ export interface ServiceData {
   processSteps: { step: string; title: string; desc: string }[];
   whoItIsFor: string[];
   whyUsPoints: { title: string; desc: string }[];
+  seoTitle?: string;
+  metaDescription?: string;
+  caseStudy?: {
+    title: string;
+    description: string;
+  };
+  additionalSection?: {
+    badge: string;
+    title: string;
+    description: string;
+  };
+  faq?: {
+    question: string;
+    answer: string;
+  }[];
+  ctaHeadline?: string;
 }
 
 export const SERVICES_DATABASE: Record<string, ServiceData> = {
@@ -991,3 +1007,129 @@ SERVICES_DATABASE["outsourcing"] = {
   ...SERVICES_DATABASE["finance-outsourcing"],
   slug: "outsourcing",
 };
+
+SERVICES_DATABASE["virtual-cfo-hospitals"] = {
+  slug: "virtual-cfo-hospitals",
+  title: "Virtual CFO for Hospitals",
+  eyebrow: "HEALTHCARE FINANCIAL LEADERSHIP",
+  headline: "Do You Really Know Which Part of Your Hospital Is Making Money?",
+  description:
+    "Most hospitals can tell you their total revenue. Few can tell you which department is actually driving it — and which one is quietly pulling it down. It's one of the most common blind spots we see, even in well-run hospitals.",
+  heroImage: "/images/healthcare.jpg",
+  problemTitle: "What a Virtual CFO Actually Sees That Your Accountant Doesn't",
+  problemDescription:
+    "A traditional accountant closes the books accurately — that's their job, and they do it well. A virtual CFO goes a step further: tracking department-wise profitability, spotting billing leakages, and turning those numbers into real decisions on pricing, staffing, and growth. It's a different lens on the same data, not a replacement for what your accountant already does.",
+  problemPoints: [
+    "Lack of department-wise profitability tracking masks underperforming clinical divisions.",
+    "Unnoticed billing leakages and uncollected claims quietly pull down net margins.",
+    "Traditional accounting focuses on historical tax compliance rather than proactive growth decisions.",
+    "Promoters lack executive monthly dashboards needed for pricing, staffing, and capital expansion.",
+  ],
+  deliverables: [
+    {
+      title: "Department-Wise Profitability Tracking",
+      desc: "Granular visibility into revenue generation and cost structures across every specialty and clinical department.",
+    },
+    {
+      title: "Revenue & Billing Leakage Audit",
+      desc: "Identifying uncollected claims, unbilled procedures, and workflow bottlenecks to recover lost margin.",
+    },
+    {
+      title: "Executive Promoters Dashboard",
+      desc: "Monthly actionable dashboards turning raw hospital data into clear decisions on pricing, staffing, and growth.",
+    },
+    {
+      title: "Doctor Payout & Cost Allocation",
+      desc: "Optimizing doctor compensation frameworks, clinical equipment ROI, and department cost allocations.",
+    },
+    {
+      title: "Tax, GST & Statutory Governance",
+      desc: "Handling urgent financial, tax, and GST matters alongside strategic hospital advisory.",
+    },
+    {
+      title: "Expansion & Capital Expenditure Modeling",
+      desc: "Scenario modeling and break-even analysis for new branch rollouts and bed capacity expansion.",
+    },
+  ],
+  processSteps: [
+    {
+      step: "01",
+      title: "Hospital System Study",
+      desc: "We start with a system study to understand how the hospital actually runs.",
+    },
+    {
+      step: "02",
+      title: "Workflow & Cost Mapping",
+      desc: "We map the cost, revenue, and billing workflow across every department.",
+    },
+    {
+      step: "03",
+      title: "Analytics Dashboard",
+      desc: "You get an analytics dashboard showing exactly where the money is going.",
+    },
+    {
+      step: "04",
+      title: "Tax & Advisory Integration",
+      desc: "Alongside this, we also handle urgent financial matters like tax and GST issues.",
+    },
+  ],
+  whoItIsFor: [
+    "Multi-Specialty Hospitals",
+    "Single-Specialty Clinics",
+    "Diagnostic & Imaging Centers",
+    "Daycare Surgery Centers",
+    "Hospital Chains & Groups",
+    "Healthcare Promoters",
+  ],
+  whyUsPoints: [
+    {
+      title: "Healthcare Commercial Depth",
+      desc: "Specialized advisory built on deep understanding of hospital billing, doctor payouts, and clinical margins.",
+    },
+    {
+      title: "Actionable Promoters Dashboard",
+      desc: "Executive-level monthly visibility that translates complex clinical numbers into strategic clarity.",
+    },
+    {
+      title: "Rapid Leakage Recovery",
+      desc: "Identifying real, recoverable revenue leakages within the first two quarters of engagement.",
+    },
+  ],
+  seoTitle: "Virtual CFO for Hospitals",
+  metaDescription: "Know if your hospital is actually making money — and what to do about it.",
+  caseStudy: {
+    title: "How This Could Work for Your Hospital",
+    description:
+      "Think of a multi-specialty clinic — steady revenue on paper, everything looking healthy on the surface. But there's no real visibility into where that revenue is actually coming from, or where it's quietly slipping away. Once billing workflows are studied department by department, patterns like this usually surface — and within a couple of quarters, that visibility often turns into real, recoverable revenue and a monthly dashboard the promoters can actually use to make decisions.",
+  },
+  additionalSection: {
+    badge: "PROMOTER VISIBILITY",
+    title: "Is Your Hospital's Financial Picture as Clear as It Could Be?",
+    description:
+      "Many promoters we speak with know their overall numbers well, but haven't had a reason to look at department-level profitability before — simply because their current setup was never designed to show it. It's less about what's missing and more about what's possible once that visibility exists.",
+  },
+  faq: [
+    {
+      question: "What does a virtual CFO do for a hospital?",
+      answer:
+        "A virtual CFO gives hospitals department-level financial visibility, tracks cost leakages, and turns raw numbers into decisions on pricing, staffing, and growth — without the cost of a full-time hire.",
+    },
+    {
+      question: "How is a virtual CFO different from my current accountant?",
+      answer:
+        "An accountant closes your books accurately. A virtual CFO uses those same numbers to show you where money is being made or lost, and advises on what to do about it.",
+    },
+    {
+      question: "Is a virtual CFO affordable for a mid-sized hospital?",
+      answer:
+        "Yes — a virtual CFO typically costs a fraction of a full-time in-house CFO's salary, while providing the same strategic oversight on a flexible basis.",
+    },
+    {
+      question: "How soon can I expect results?",
+      answer:
+        "Most hospitals we've worked with identify real, actionable revenue leakage within the first two quarters of engagement.",
+    },
+  ],
+  ctaHeadline: "Talk to us about your hospital's finances",
+};
+

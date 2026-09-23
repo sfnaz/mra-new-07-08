@@ -465,6 +465,21 @@ export function HeroNav() {
                           <span className="text-[#F4B942] text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
                         </Link>
 
+                        {/* 01b: Virtual CFO for Hospitals */}
+                        <Link
+                          href="/services/virtual-cfo-hospitals"
+                          onClick={() => setIsServicesOpen(false)}
+                          className="flex items-center justify-between py-2 px-3 rounded-md bg-transparent border-l-2 border-transparent text-decoration-none transition-all duration-200 ease-out cursor-pointer hover:bg-[#1F3A8A]/40 hover:border-l-[#F4B942] group"
+                        >
+                          <div className="flex items-center gap-2.5">
+                            <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-[#F4B942] shrink-0">
+                              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                            </svg>
+                            <span className="font-serif text-sm font-semibold text-[#FAF8F1] group-hover:text-[#F4B942] transition-colors">Virtual CFO for Hospitals</span>
+                          </div>
+                          <span className="text-[#F4B942] text-xs opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">→</span>
+                        </Link>
+
                         {/* 02: Business Advisory */}
                         <Link
                           href="/services/business-advisory"

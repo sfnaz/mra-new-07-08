@@ -75,6 +75,11 @@ export default function Section12Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/services/virtual-cfo-hospitals" className="hover:text-[#1F3A8A] transition-colors">
+                  Virtual CFO for Hospitals
+                </Link>
+              </li>
+              <li>
                 <Link href="/services/audit-assurance" className="hover:text-[#1F3A8A] transition-colors">
                   Audit &amp; Assurance
                 </Link>

@@ -404,12 +404,19 @@ export function HealthcareIndustryPage() {
             <p className="font-sans text-[#111827]/85 text-base sm:text-lg leading-relaxed">
               Business Advisory helps healthcare leadership structure major expansion decisions before capital is committed. Through scenario modeling, break-even analysis, and capital requirement evaluation, MR&amp;A brings financial clarity to growing practices.
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center gap-6">
               <Link
-                href="/services/business-advisory"
+                href="/services/virtual-cfo-hospitals"
                 className="inline-flex items-center gap-2 font-sans font-bold text-sm text-[#1F3A8A] hover:text-[#F4B942] transition-colors"
               >
-                <span>Explore Business Advisory Capability</span>
+                <span>Explore Virtual CFO for Hospitals</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/services/business-advisory"
+                className="inline-flex items-center gap-2 font-sans font-bold text-sm text-[#111827]/70 hover:text-[#F4B942] transition-colors"
+              >
+                <span>Business Advisory Capability</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

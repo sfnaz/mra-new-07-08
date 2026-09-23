@@ -34,8 +34,8 @@ export async function generateMetadata({
   const service = SERVICES_DATABASE[params.slug];
   if (!service) return {};
 
-  const title = `${service.title} | Manesh Rineesh & Associates`;
-  const description = service.description;
+  const title = service.seoTitle ? service.seoTitle : `${service.title} | Manesh Rineesh & Associates`;
+  const description = service.metaDescription || service.description;
   const canonicalUrl = `https://maneshrineesh.com/services/${service.slug}`;
 
   return {
@@ -51,7 +51,7 @@ export async function generateMetadata({
       type: "article",
       images: [
         {
-          url: "/images/section-02-team.jpg",
+          url: service.heroImage || "/images/section-02-team.jpg",
           width: 1200,
           height: 630,
           alt: service.title,
@@ -62,7 +62,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/images/section-02-team.jpg"],
+      images: [service.heroImage || "/images/section-02-team.jpg"],
     },
   };
 }
@@ -99,12 +99,33 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
     ],
   };
 
+  const faqSchema = service.faq
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <div className="min-h-screen bg-[#FAF8F1] text-[#111827] font-sans selection:bg-[#F4B942] selection:text-[#111827]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       {/* GLOBAL HEADER NAV */}
       <HeroNav />
 
@@ -146,7 +167,7 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
               href="#consultation"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#1F3A8A] hover:bg-[#F4B942] text-[#FAF8F1] font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-xl cursor-pointer group"
             >
-              <span>Discuss With Us</span>
+              <span>Book a Free Consultation</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <Link
@@ -166,9 +187,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
             {/* Left Header */}
             <div className="lg:col-span-5 space-y-4">
               <SectionBadge align="left" as="h2">BUSINESS CONTEXT &amp; CHALLENGE</SectionBadge>
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#111827] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#111827] leading-tight">
                 {service.problemTitle}
-              </p>
+              </h2>
               <p className="text-sm sm:text-base text-[#111827]/85 leading-relaxed font-sans pt-2">
                 {service.problemDescription}
               </p>
@@ -196,13 +217,28 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
         </div>
       </section>
 
+      {/* ── OPTIONAL SECTION: CASE STUDY / WORK SCENARIO ────────────────── */}
+      {service.caseStudy && (
+        <section className="py-20 lg:py-28 px-6 lg:px-12 max-w-[1240px] mx-auto border-b border-[#FFD978]">
+          <div className="bg-[#FAF8F1] border border-[#FFD978] rounded-3xl p-8 sm:p-12 space-y-6 shadow-sm">
+            <SectionBadge align="left" as="h2">PRACTICAL IMPACT &amp; SCENARIO</SectionBadge>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#111827]">
+              {service.caseStudy.title}
+            </h2>
+            <p className="text-base sm:text-lg text-[#111827]/85 leading-relaxed font-sans max-w-4xl">
+              {service.caseStudy.description}
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ── SECTION 3: WHAT WE DELIVER (DELIVERABLES GRID) ──────────────── */}
       <section className="py-20 lg:py-28 px-6 lg:px-12 max-w-[1240px] mx-auto">
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <SectionBadge align="center" as="h2">PRACTICE DELIVERABLES</SectionBadge>
-          <p className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
             What We Deliver in {service.title}
-          </p>
+          </h2>
           <p className="text-sm sm:text-base text-[#111827]/80 font-sans leading-relaxed">
             Structured engagement frameworks designed to maintain compliance, mitigate risk, and drive outcomes.
           </p>
@@ -240,9 +276,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#FFD978]">
             <div>
               <SectionBadge align="left" as="h2">OUR METHODOLOGY</SectionBadge>
-              <p className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
-                How We Engage
-              </p>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+                How It Works
+              </h2>
             </div>
             <p className="text-sm text-[#111827]/80 font-sans max-w-md">
               A structured 4-phase methodology ensuring smooth implementation and ongoing continuous advisory support.
@@ -272,9 +308,9 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 space-y-4">
             <SectionBadge align="left" as="h2">TARGET SECTORS &amp; ENTITIES</SectionBadge>
-            <p className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
               Who This Service Is For
-            </p>
+            </h2>
             <p className="text-sm sm:text-base text-[#111827]/80 leading-relaxed font-sans">
               Tailored for enterprises seeking clear commercial governance, compliance discipline, and financial clarity.
             </p>
@@ -296,14 +332,29 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
         </div>
       </section>
 
+      {/* ── OPTIONAL ADDITIONAL SECTION ─────────────────────────────────── */}
+      {service.additionalSection && (
+        <section className="py-20 lg:py-28 bg-[#FFD978]/25 border-t border-b border-[#FFD978] px-6 lg:px-12">
+          <div className="max-w-[1240px] mx-auto space-y-6 text-left">
+            <SectionBadge align="left" as="h2">{service.additionalSection.badge}</SectionBadge>
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+              {service.additionalSection.title}
+            </h2>
+            <p className="text-base sm:text-lg text-[#111827]/85 font-sans leading-relaxed max-w-4xl">
+              {service.additionalSection.description}
+            </p>
+          </div>
+        </section>
+      )}
+
       {/* ── SECTION 6: WHY MANESH RINEESH & ASSOCIATES ──────────────────── */}
-      <section className="py-20 lg:py-28 bg-[#FFD978]/25 border-t border-b border-[#FFD978] px-6 lg:px-12">
+      <section className="py-20 lg:py-28 px-6 lg:px-12 max-w-[1240px] mx-auto">
         <div className="max-w-[1240px] mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-3">
             <SectionBadge align="center" as="h2">THE FIRM DIFFERENCE</SectionBadge>
-            <p className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
               Why Manesh Rineesh &amp; Associates
-            </p>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -325,7 +376,44 @@ export default function ServiceDetailPage({ params }: ServiceDetailProps) {
         </div>
       </section>
 
+      {/* ── OPTIONAL FAQ SECTION ────────────────────────────────────────── */}
+      {service.faq && service.faq.length > 0 && (
+        <section className="py-20 lg:py-28 bg-[#FFD978]/25 border-t border-b border-[#FFD978] px-6 lg:px-12">
+          <div className="max-w-[1000px] mx-auto space-y-12">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <SectionBadge align="center" as="h2">EXECUTIVE CLARITY</SectionBadge>
+              <h2 className="text-3xl sm:text-4xl font-serif font-bold text-[#111827]">
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {service.faq.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 sm:p-8 rounded-2xl bg-[#FAF8F1] border border-[#FFD978] shadow-sm space-y-3"
+                >
+                  <h3 className="text-lg sm:text-xl font-serif font-bold text-[#111827]">
+                    {item.question}
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#111827]/85 font-sans leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── SECTION 7: FINAL CONSULTATION CTA ───────────────────────────── */}
+      {service.ctaHeadline && (
+        <div className="pt-12 text-center bg-[#FAF8F1]">
+          <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#111827]">
+            {service.ctaHeadline}
+          </h2>
+        </div>
+      )}
       <ConsultationCTA
         id="consultation"
         initialTopicId={service.slug}
