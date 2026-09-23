@@ -7,11 +7,11 @@ export interface ServiceData {
   heroImage: string;
   problemTitle: string;
   problemDescription: string;
-  problemPoints: string[];
-  deliverables: { title: string; desc: string }[];
+  problemPoints?: string[];
+  deliverables?: { title: string; desc: string }[];
   processSteps: { step: string; title: string; desc: string }[];
-  whoItIsFor: string[];
-  whyUsPoints: { title: string; desc: string }[];
+  whoItIsFor?: string[];
+  whyUsPoints?: { title: string; desc: string }[];
   seoTitle?: string;
   metaDescription?: string;
   caseStudy?: {
@@ -1019,38 +1019,6 @@ SERVICES_DATABASE["virtual-cfo-hospitals"] = {
   problemTitle: "What a Virtual CFO Actually Sees That Your Accountant Doesn't",
   problemDescription:
     "A traditional accountant closes the books accurately — that's their job, and they do it well. A virtual CFO goes a step further: tracking department-wise profitability, spotting billing leakages, and turning those numbers into real decisions on pricing, staffing, and growth. It's a different lens on the same data, not a replacement for what your accountant already does.",
-  problemPoints: [
-    "Lack of department-wise profitability tracking masks underperforming clinical divisions.",
-    "Unnoticed billing leakages and uncollected claims quietly pull down net margins.",
-    "Traditional accounting focuses on historical tax compliance rather than proactive growth decisions.",
-    "Promoters lack executive monthly dashboards needed for pricing, staffing, and capital expansion.",
-  ],
-  deliverables: [
-    {
-      title: "Department-Wise Profitability Tracking",
-      desc: "Granular visibility into revenue generation and cost structures across every specialty and clinical department.",
-    },
-    {
-      title: "Revenue & Billing Leakage Audit",
-      desc: "Identifying uncollected claims, unbilled procedures, and workflow bottlenecks to recover lost margin.",
-    },
-    {
-      title: "Executive Promoters Dashboard",
-      desc: "Monthly actionable dashboards turning raw hospital data into clear decisions on pricing, staffing, and growth.",
-    },
-    {
-      title: "Doctor Payout & Cost Allocation",
-      desc: "Optimizing doctor compensation frameworks, clinical equipment ROI, and department cost allocations.",
-    },
-    {
-      title: "Tax, GST & Statutory Governance",
-      desc: "Handling urgent financial, tax, and GST matters alongside strategic hospital advisory.",
-    },
-    {
-      title: "Expansion & Capital Expenditure Modeling",
-      desc: "Scenario modeling and break-even analysis for new branch rollouts and bed capacity expansion.",
-    },
-  ],
   processSteps: [
     {
       step: "01",
@@ -1071,28 +1039,6 @@ SERVICES_DATABASE["virtual-cfo-hospitals"] = {
       step: "04",
       title: "Tax & Advisory Integration",
       desc: "Alongside this, we also handle urgent financial matters like tax and GST issues.",
-    },
-  ],
-  whoItIsFor: [
-    "Multi-Specialty Hospitals",
-    "Single-Specialty Clinics",
-    "Diagnostic & Imaging Centers",
-    "Daycare Surgery Centers",
-    "Hospital Chains & Groups",
-    "Healthcare Promoters",
-  ],
-  whyUsPoints: [
-    {
-      title: "Healthcare Commercial Depth",
-      desc: "Specialized advisory built on deep understanding of hospital billing, doctor payouts, and clinical margins.",
-    },
-    {
-      title: "Actionable Promoters Dashboard",
-      desc: "Executive-level monthly visibility that translates complex clinical numbers into strategic clarity.",
-    },
-    {
-      title: "Rapid Leakage Recovery",
-      desc: "Identifying real, recoverable revenue leakages within the first two quarters of engagement.",
     },
   ],
   seoTitle: "Virtual CFO for Hospitals",
