@@ -20,6 +20,11 @@
   --muted: #7A4E20;
   --border: rgba(244, 185, 66, 0.3);
   --ease-executive: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Apple System Font Stacks */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: ui-serif, "New York", Georgia, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 html {
@@ -36,7 +41,7 @@ body {
   overflow-x: hidden;
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans);
 }
 
 /* Custom Scrollbar Styles using Signature Brand Colors */
